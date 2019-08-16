@@ -14,6 +14,18 @@
           <CounterBadge :count="cartCount" />
         </router-link>
       </div>
+      <div class="mob-nav-button" @click="mobileNav">
+        <i class="fad fa-bars"></i>
+      </div>
+      <div class="mob-nav" @click="removeMobileNav">
+        <router-link to="/">Home</router-link>|
+        <router-link :to="{name: 'gender-overview', params: {gender: 'women'}}" class>Womens</router-link>|
+        <router-link :to="{name: 'gender-overview', params: {gender: 'men'}}" class>Mens</router-link>|
+        <router-link to="/cart">
+          Cart
+          <CounterBadge :count="cartCount" />
+        </router-link>
+      </div>
     </div>
     <div class="hero" v-if="$route.path === '/'">
       <div class="hero-text">
@@ -30,6 +42,16 @@ export default {
   name: "App",
   components: {
     CounterBadge
+  },
+  methods: {
+    mobileNav() {
+      let nav = document.querySelector(".mob-nav");
+      nav.classList.toggle("show");
+    },
+    removeMobileNav() {
+      let nav = document.querySelector(".mob-nav");
+      nav.classList.remove("show");
+    }
   },
   computed: {
     cartCount() {
@@ -77,7 +99,7 @@ body {
   color: #2c3e50;
 }
 #nav {
-  padding: 0.01rem 5rem;
+  padding: 0.01rem 2rem;
   background-color: #464a53;
   // #827B78
   // background: linear-gradient(to bottom right, #464a53 50%, #827b78);
@@ -118,6 +140,10 @@ body {
   width: 300px;
   color: white;
 
+  @media (max-width: 800px) {
+    display: none;
+  }
+
   a {
     color: white;
 
@@ -129,6 +155,35 @@ body {
   router-link {
     color: white;
   }
+}
+
+.mob-nav-button {
+  display: none;
+  color: lightgrey;
+  font-size: 1.6rem;
+  cursor: pointer;
+
+  @media (max-width: 800px) {
+    display: flex;
+  }
+}
+
+.mob-nav {
+  display: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.show {
+  display: flex;
+  background-color: black;
+  flex-direction: column;
+  align-content: space-around;
+  position: absolute;
+  top: 5.8rem;
+  right: 0rem;
+  z-index: 100;
+  width: 15rem;
+  padding: 1rem;
 }
 ul {
   padding-left: 0;
