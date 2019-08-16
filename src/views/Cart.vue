@@ -49,6 +49,7 @@
         <button
           :disabled="!this.selectedShippingOption"
           class="btn btn--grey total-section__checkout-button"
+          @click="checkout"
         >Check out</button>
       </section>
     </div>
@@ -125,6 +126,9 @@ export default {
   methods: {
     removeFromCart(itemId) {
       this.$store.dispatch("removeFromCart", itemId);
+    },
+    checkout() {
+      alert("This is a sample application, no payment will be processed.");
     }
   }
 };
