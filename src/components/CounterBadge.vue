@@ -11,7 +11,7 @@ export default {
 .badge {
   position: absolute;
   top: 2rem;
-  right: 3.5rem;
+  right: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
